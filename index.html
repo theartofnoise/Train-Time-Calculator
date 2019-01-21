@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Train Time Calculator</title>
+    <!-- bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS"
+        crossorigin="anonymous">
+        <!-- moments -->
+    <script src="https://cdn.jsdelivr.net/momentjs/2.12.0/moment.min.js"></script>
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="assets/style.css">
+    
+</head>
+
+<body>
+
+        <div class='container' style='width:"70%" ; margin:"auto" '>
+        
+                <div class="container" style='background-color: black; border-radius: 5px; padding: 15px 25px 15px 25px'>
+                    <h3 class="display-4" style='color:white'>If a train leaves a staion going...</h3>
+                    <p class="lead" style='color:white'>Track your train in realtime with this helpful tool</p>
+                </div>
+                
+                <div class="card" style="width: 100%; margin: 15px 0px;">
+                  <div class="card-header">
+                    Current Employees
+                  </div>
+                  <table class="table">
+                  
+                    <tbody id="topRow">
+                  
+                      <tr>
+                        
+                        <th scope="col"><b>Train Name</b></th>
+                        <th scope="col"><b>Destination</b></th>
+                        <th scope="col"><b>Frequency (mins)</b></th>
+                        <th scope="col"><b>Next Arrival</b></th>
+                        <th scope="col"><b>Minutes Away</b></th>
+                    </tr>
+                  
+                      <tr>
+                        
+                        <td>Art Express</td>
+                        <td>Funkytown</td>
+                        <td>30</td>
+                        <td>13:00</td>
+                        <td>7</td>
+                    </tr>
+                  
+                    </tbody>
+                  </table>          
+                </div>
+        
+              <div class="card" style="width: 100%; margin: 15px 0px;">
+                  <div class="card-header">
+                    Enter train information
+                  </div>
+            
+              <form style='padding:20px'>
+                    <div class="form-group">
+                      <label for="trainName">Train Name</label>
+                      <input type="name" class="form-control" id="tName" aria-describedby="nameHelp" placeholder="Tri-Rail">
+                    </div>
+        
+                    <div class="form-group">
+                      <label for="inputDestination">Destination</label>
+                      <input type="role" class="form-control" id="destination" placeholder="Miami">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="inputFreq">Frequency (mins)</label>
+                        <input type="role" class="form-control" id="freq" placeholder="15">
+                    </div>
+        
+                    <div class="form-group">
+                        <label for="inputFTT">First Train Time (military time)</label>
+                        <input type="role" class="form-control" id="FTT" placeholder="HH:MM (military time for PM)">
+                    </div>                   
+
+                    <button type="submit" class="btn btn-primary" id='submit' style='text-align:"right"'>Submit</button>
+                  </form>
+              </div>
+        
+            </div>
+
+
+    <script src="https://www.gstatic.com/firebasejs/5.8.0/firebase.js"></script>
+    <script src="assets/logic.js" ></script>
+</body>
+
+</html>
