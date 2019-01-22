@@ -1,4 +1,9 @@
 $(document).ready(function (){
+    function setTime() {
+    var now = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+    $("#timeNow").text(now);
+};
+setInterval(setTime, 1000);
 
 
   // Initialize Firebase
@@ -30,6 +35,7 @@ $(document).ready(function (){
 
     }
     
+    // timeConversion();
     db.push(newTrain);
 
     console.log(newTrain);
@@ -40,16 +46,37 @@ $(document).ready(function (){
     
   });
 
-  db.on("child_added", function(childSnap) {
-
-      var newRow = "<tr><td>" + childSnap.val().name + "</td><td>" + childSnap.val().destination + "</td><td>" + childSnap.val().frequency + "</td><td>" + "next trizane" + "</td><td>" + "minz away" + "</td></tr>"
+  //Time conversion
+  function timeConversion(startT, freqT) {
+      var now = moment().format("LT")
+      console.log(now);
+      var lastYearStartT = moment(startT,"LT").subtract(1, "years").format("LT");
+      console.log("start last year: "+lastYearStartT);
+      console.log("freqT: "+ freqT);
+      var diffT = moment().subtract(startT, "LT").format("m");
+      console.log("diff: " + diffT);
+      var r = diffT % freqT;
+      console.log("r: "+r);
+      var minsAway = freqT - r;
+      console.log("mins away: "+minsAway);
+      var arriveT = moment().add(minsAway, "m").format("LT");
+      console.log("arriveT: "+arriveT);
       
+  };
+  
+  db.on("child_added", function(childSnap, arriveT, minsAway) {
+      
+      var newRow = "<tr><td>" + childSnap.val().name + "</td><td>" + childSnap.val().destination + "</td><td>" + childSnap.val().frequency + "</td><td>" + arriveT + "</td><td>" + minsAway + "</td></tr>"
+    //   console.log(childSnap.val().FirstTrainTime);
+      var startT = childSnap.val().FirstTrainTime;
+      var freqT = childSnap.val().frequency;
+    //   console.log(freqT);
+      timeConversion(startT, freqT);
       $('#topRow').append(newRow);
+      
+    }, function(errorObject) {
+        console.log('Error: ' + errorObject);
+    });
+
     
-
-  }, function(errorObject) {
-    console.log('Error: ' + errorObject);
-});
-
-
 });
